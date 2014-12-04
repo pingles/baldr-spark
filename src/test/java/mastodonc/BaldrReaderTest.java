@@ -8,6 +8,7 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 public class BaldrReaderTest {
     @Test
@@ -23,6 +24,9 @@ public class BaldrReaderTest {
         assertEquals("Hello, world", new String(record.bytes()));
         assertEquals("Hello, world".length(), record.length());
         assertEquals(0, record.position());
+
+        // only 1 record
+        assertNull(r.next());
     }
 
     private byte[] createRecordBytes(String message) {
