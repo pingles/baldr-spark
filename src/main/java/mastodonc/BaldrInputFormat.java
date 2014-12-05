@@ -18,6 +18,11 @@ public class BaldrInputFormat extends FileInputFormat {
         return new BaldrRecordReader((FileSplit)inputSplit, conf);
     }
 
+    @Override
+    protected boolean isSplitable(FileSystem fs, Path filename) {
+        return false;
+    }
+
     // http://grepcode.com/file/repo1.maven.org/maven2/org.jvnet.hudson.hadoop/hadoop-core/0.19.1-hudson-2/org/apache/hadoop/mapred/LineRecordReader.java#LineRecordReader
 
     private class BaldrRecordReader implements RecordReader<LongWritable, BytesWritable> {
